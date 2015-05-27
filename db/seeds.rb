@@ -1,5 +1,16 @@
 require 'faker'
 
+# Unique Post
+if !Post.exists?(title: '12345', body: '678910')
+  Post.create!(title: '12345', body: '678910')
+end
+unique_post = Post.find_by(title: '12345', body: '678910')
+
+# Unique Comment
+if !Comment.exists?(post: unique_post, body: '112233')
+  Comment.create!(post: unique_post, body: '112233')
+end
+
 # Create Posts
 50.times do 
   Post.create!(
